@@ -1,0 +1,3 @@
+[submodule "ppo_balancer"]
+	path = ppo_balancer
+	url = https://github.com/upkie/ppo_balancer.git
