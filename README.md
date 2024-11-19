@@ -146,6 +146,6 @@ Evaluate the balancing performance of a linear feedback controller, then train a
 
 - [x] Start up a simulation following the instructions from the upkie repository
 - [x] Try out a first balancing policy using only pure linear feedback of the base pitch angle
-- [-] Using the environment API, apply a sagittal force to the robot for 1 second. What is the resulting MSFOS (in N) that you can apply before the robot falls ?
+- [ ] Using the environment API, apply a sagittal force to the robot for 1 second. What is the resulting MSFOS (in N) that you can apply before the robot falls ?
 - [ ] Update your policy to linear feedback of the full observation vector. How much improvement in MSFOS can you achieve ?
-- [-] From there on, let us switch to training a neural-network policy by proximal policy optimization (PPO). Clone the PPO balancer and run the pre-trained policy. How well does it perform in MSFOS ?
+- [ ] From there on, let us switch to training a neural-network policy by proximal policy optimization (PPO). Clone the PPO balancer and run the pre-trained policy. How well does it perform in MSFOS ?
