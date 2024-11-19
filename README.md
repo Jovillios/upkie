@@ -13,17 +13,17 @@
 This repository contains all the materials needed to build and animate an Upkie:
 
 - Hardware:
-    - [Bill of materials](https://github.com/upkie/upkie/wiki/Bill-of-materials)
-    - [Build instructions](https://github.com/upkie/upkie/wiki)
-    - [Project log](https://hackaday.io/project/185729-upkie-wheeled-biped-robots)
+  - [Bill of materials](https://github.com/upkie/upkie/wiki/Bill-of-materials)
+  - [Build instructions](https://github.com/upkie/upkie/wiki)
+  - [Project log](https://hackaday.io/project/185729-upkie-wheeled-biped-robots)
 - Software:
-    - [Installation](https://github.com/upkie/upkie#installation)
-    - [Getting started](https://github.com/upkie/upkie#getting-started)
-    - [Documentation](https://upkie.github.io/upkie/)
+  - [Installation](https://github.com/upkie/upkie#installation)
+  - [Getting started](https://github.com/upkie/upkie#getting-started)
+  - [Documentation](https://upkie.github.io/upkie/)
 - Going further:
-    - [Examples](https://github.com/upkie/upkie/tree/main/examples)
-    - [Gymnasium environments](https://upkie.github.io/upkie/environments.html)
-    - [Agents](https://github.com/upkie/upkie#agents)
+  - [Examples](https://github.com/upkie/upkie/tree/main/examples)
+  - [Gymnasium environments](https://upkie.github.io/upkie/environments.html)
+  - [Agents](https://github.com/upkie/upkie#agents)
 
 Questions are welcome in the [Chat](https://app.element.io/#/room/#upkie:matrix.org) and [Discussions forum](https://github.com/upkie/upkie/discussions).
 
@@ -78,8 +78,8 @@ Upkie has environments compatible with the [Gymnasium API](https://gymnasium.far
 
 - `UpkieGroundVelocity`: keep legs straight and balance with the wheels.
 - `UpkieServos`: control joint servos directly (position, velocity, torque)
-    - `UpkieServoPositions`: control joint positions.
-    - `UpkieServoTorques`: control joint torques.
+  - `UpkieServoPositions`: control joint positions.
+  - `UpkieServoTorques`: control joint torques.
 
 Check out the full [list of environments](https://upkie.github.io/upkie/environments.html) for details.
 
@@ -92,7 +92,7 @@ Larger Upkie agents have their own repositories:
 - [PPO balancer](https://github.com/upkie/ppo_balancer): balance in place with a policy trained by reinforcement learning.
 - [PID balancer](https://github.com/upkie/pid_balancer): legacy agent used to test new Upkies with minimal dependencies.
 
-Head over to the [new\_agent](https://github.com/upkie/new_agent) template to create your own, and feel free to open a PR here to add your agent to the list.
+Head over to the [new_agent](https://github.com/upkie/new_agent) template to create your own, and feel free to open a PR here to add your agent to the list.
 
 ## How can I participate?
 
@@ -117,3 +117,35 @@ If you built an Upkie or use parts of this project in your works, please cite th
 
 - [Awesome Open Source Robots](https://github.com/stephane-caron/awesome-open-source-robots): Upkies are one among many open-source open-hardware robot initiative: check out the others!
 - [Open Dynamic Robot Initiative](https://open-dynamic-robot-initiative.github.io/): An open torque-controlled modular robot architecture for legged locomotion research.
+
+. . .
+
+# Project : RL to balance a wheeled biped robot
+
+Upkie is a wheeled biped robot developed in the Willow team at Inria. It can balance itself upright and traverse various terrains. One metric for the robustness of a balancing policy is the maximum push that can be applied to the robot before it falls. In this topic, we focus on the maximum sagittal force over one second, which we will write MSFOS for short.
+
+## Goal
+
+Evaluate the balancing performance of a linear feedback controller, then train a more robust behavior by reinforcement learning of a neural-network policy.
+
+## Project plan
+
+1. Start up a simulation following the instructions from the upkie repository
+2. Try out a first balancing policy using only pure linear feedback of the base pitch angle
+3. Using the environment API, apply a sagittal force to the robot for 1 second. What is the resulting MSFOS (in N) that you can apply before the robot falls ?
+4. Update your policy to linear feedback of the full observation vector. How much improvement in MSFOS can you achieve ?
+5. From there on, let us switch to training a neural-network policy by proximal policy optimization (PPO). Clone the PPO balancer and run the pre-trained policy. How well does it perform in MSFOS ?
+6. Run the training script to train a new policy, adjusting the number of processes to your computer. What is the best number of processes for your computer ?
+7. Run your trained policy and check its MSFOS
+8. Improve the policy using one of the techniques seen in class that is not implemented in the PPO balancer : either curriculum learning, or reward shaping, or teacher-student distillation.
+9. Extension : the UpkieServos Gymnasium environment allows us to send position or velocity commands to each joint of the robot. Check out the new observations and actions from this environment : do they contain everything we need for balancing ? 10. Train a balancing policy for the UpkieServos environment . Does it improve MSFOS outofthebox?
+10. Action shaping is a way to make the policy less end-to-end by adding some
+    engineering to the environment. For instance, since the two limbs of the robot have roughly the same length, it is usually a good idea to set knee ankle = ±2 \* hip angle so that the action becomes [crouching, wheel velocity] for each leg. Add some action shaping to your environment. Can you improve the MSFOS of the resulting policies ?
+
+## Advancement
+
+- [x] Start up a simulation following the instructions from the upkie repository
+- [x] Try out a first balancing policy using only pure linear feedback of the base pitch angle
+- [-] Using the environment API, apply a sagittal force to the robot for 1 second. What is the resulting MSFOS (in N) that you can apply before the robot falls ?
+- [ ] Update your policy to linear feedback of the full observation vector. How much improvement in MSFOS can you achieve ?
+- [-] From there on, let us switch to training a neural-network policy by proximal policy optimization (PPO). Clone the PPO balancer and run the pre-trained policy. How well does it perform in MSFOS ?
