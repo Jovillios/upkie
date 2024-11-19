@@ -11,3 +11,4 @@ tools/logs/*.tar.*
 training/
 upkie.wiki/
 wiki/
+.ipynb_checkpoints/
