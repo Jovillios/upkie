@@ -34,7 +34,7 @@ def run(env: upkie.envs.UpkieGroundVelocity):
         }
     }
     observation, _ = env.reset()
-    gain = np.array([10.0, 1.0, 0.0, 0.1])
+    gain = np.array([20.0, 20.0, .2, .20])
 
     #Values of intensity sagitall force that is apply 
     intensity_force = np.arange(0.0,0.1,0.01)

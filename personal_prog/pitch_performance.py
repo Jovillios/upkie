@@ -72,7 +72,7 @@ def run(env: upkie.envs.UpkieGroundVelocity, gain):
             torso_force_in_world[0] = get_sagittal_force(intensity_force[index_intensity])
             observation, _ = env.reset()
             pitch = np.array(observation[0])
-    return best_magnitude
+    return intensity_force[index_intensity-1]
 
 
 gain_list = [5.0,10.0,15.0,20.0,25.0]
@@ -83,5 +83,6 @@ if __name__ == "__main__":
             best_magnitude.append(run(env,gain_list[i]))
                                   
         for i in range(len(gain_list)):
-            print(f'Gain : {gain_list[i]} => MFOS = {best_magnitude[i]}')
+	    bm = get_sagittal_force(best_magnitude[i])
+            print(f'Gain : {gain_list[i]} => MFOS = {bm}')
             
